@@ -1,54 +1,40 @@
 import { useEffect, useState } from 'react';
-// import handleLoad from '../../handles/handleLoad';
-
-import { collection, getDocs } from 'firebase/firestore';
-import { firestoreDB } from '../../firebase_setup/firebase';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { auth, firestoreDB } from '../../firebase_setup/firebase';
 
 const PostList = () => {
-  const [postList, setPostList] = useState([{}]);
+  const [postList, setPostList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // 페이지가 로드되면 파이어베이스에서 모든 포스트 가져오기
+  const handleLoad = async () => {
+    setLoading(false);
+    const data = await getDocs(collection(firestoreDB, 'posts'));
+    setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setLoading(true);
+  };
 
   useEffect(() => {
-    // 페이지가 로드되면 파이어베이스에서 모든 포스트 가져오기
-    const handleLoad = async () => {
-      const querySnapshot = await getDocs(collection(firestoreDB, 'posts'));
-      // const temp = querySnapshot.docs.map((doc) => {
-      //   const post = {
-      //     image: doc.image,
-      //     postTitle: doc.postTitle,
-      //     postContent: doc.postContent,
-      //   };
-
-      //   return post;
-      // });
-      // setPostList(temp);
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.id, ' => ', doc.data());
-        const data = doc.data();
-        setPostList((prevState) => [
-          ...prevState,
-          {
-            image: data.image,
-            postTitle: data.postTitle,
-            postContent: data.postContent,
-          },
-        ]);
-      });
-    };
-
     handleLoad();
-    console.log(postList);
-    console.log(postList);
   }, []);
 
   return (
     <>
-      <div>
-        {postList.map((e) => (
-          <div>
-            <div>제목: {e.postTitle}</div>
-          </div>
-        ))}
-      </div>
+      <ul>
+        {postList.length === 0 ? (
+          <span>포스트가 없습니다.</span>
+        ) : (
+          postList.map((post) => (
+            <li key={post.id}>
+              <span>제목: {post.postTitle}</span>
+              <img src={post.image} alt="" />
+              <p>{post.image}</p>
+              <p>{post.postContent}</p>
+              <div>{post.author.name}</div>
+            </li>
+          ))
+        )}
+      </ul>
     </>
   );
 };
