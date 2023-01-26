@@ -4,7 +4,7 @@ import PostList from '../../components/PostList/PostList';
 const MainPage = ({ isAuth, handleSignOutClick }) => {
   return (
     <BasicTemplate isAuth={isAuth} handleSignOutClick={handleSignOutClick}>
-      <PostList />
+      <PostList isAuth={isAuth} />
       {/* <div>메인페이지</div> */}
     </BasicTemplate>
   );
