@@ -6,21 +6,21 @@ import { HiPencilSquare } from 'react-icons/hi2';
 
 const Header = ({ isAuth, handleSignOutClick }) => {
   return (
-    <header className="flex justify-between items-center text-2xl mb-3 ">
-      <div>
-        <Link to="/" className="font-extrabold">
-          MyLog.
-        </Link>
-      </div>
-      <div className="text-3xl">
+    <header className="text-2xl py-4 mb-6">
+      <nav className="flex items-center justify-between py-2">
+        <h1>
+          <Link to="/" className="font-extrabold">
+            MyLog.
+          </Link>
+        </h1>
         {isAuth ? (
-          <ul className="flex justify-between w-20">
-            <li className="">
+          <ul className="flex">
+            <li className="mr-5">
               <button>
                 <HiSearch />
               </button>
             </li>
-            <li className="">
+            <li className="mr-5">
               <Link to="/write">
                 <button>
                   <HiPencilSquare />
@@ -34,7 +34,7 @@ const Header = ({ isAuth, handleSignOutClick }) => {
             </li>
           </ul>
         ) : (
-          <ul className="flex justify-between w-20">
+          <ul className="flex">
             <li>
               <Link to="/login">
                 <button>
@@ -44,7 +44,7 @@ const Header = ({ isAuth, handleSignOutClick }) => {
             </li>
           </ul>
         )}
-      </div>
+      </nav>
     </header>
   );
 };

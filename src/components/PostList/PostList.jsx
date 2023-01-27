@@ -31,26 +31,41 @@ const PostList = ({ isAuth }) => {
 
   return (
     <>
-      <ul>
+      <h2 className="sr-only">포스트 목록</h2>
+      <ul className="flex flex-wrap">
         {postList.length === 0 ? (
-          <span>포스트가 없습니다.</span>
+          <li>포스트가 없습니다.</li>
         ) : (
           postList.map((post) => (
-            <li key={post.id}>
-              <span>제목: {post.postTitle}</span>
-              <img src={post.image} alt="" />
-              <p>{post.image}</p>
-              <p>{post.postContent}</p>
-              <div>{post.author.name}</div>
-
-              {/* 로그인한 작성자의 글일 때만 삭제버튼 띄우기 */}
-              {console.log('post.author.id', post.author.id)}
-              {console.log('auth.currentUser.uid', auth.currentUser.uid)}
-              {isAuth && post.author.id === auth.currentUser.uid && (
-                <button onClick={() => handleDeletePostClick(post.id)}>
-                  삭제
-                </button>
-              )}
+            <li className="w-1/4 p-3 " key={post.id}>
+              <div className="h-[400px] w-full rounded-lg shadow-md lg:max-w-sm bg-white overflow-hidden relative ">
+                <img
+                  className="mb-4 object-cover w-full h-48"
+                  src="https://firebasestorage.googleapis.com/v0/b/mylog-437d4.appspot.com/o/files%2F%EC%A6%9D%EB%AA%85-removebg-preview.png?alt=media&token=f39f25f7-9fda-4706-9e50-6059b3947c9b"
+                  alt=""
+                />
+                <div className=" p-4 flex flex-col justify-between">
+                  <strong className="mb-2 truncate block text-xl font-semibold ">
+                    {post.postTitle}
+                  </strong>
+                  <p className="break-words line-clamp-3 mb-2 leading-normal text-zinc-500 text-sm">
+                    {post.postContent}
+                  </p>
+                  {/* <div className=" flex absolute bottom-0 left-0"> */}
+                  <span className="text-xs absolute bottom-0 left-0 m-4 pb-3">
+                    by {post.author.name}.
+                  </span>
+                  {isAuth && post.author.id === auth.currentUser.uid && (
+                    <button
+                      className="px-4 py-2 text-sm text-blue-100 bg-blue-500 rounded shadow  absolute bottom-0 right-0 m-4"
+                      onClick={() => handleDeletePostClick(post.id)}
+                    >
+                      삭제
+                    </button>
+                  )}
+                  {/* </div> */}
+                </div>
+              </div>
             </li>
           ))
         )}

@@ -5,17 +5,19 @@ import Footer from '../components/Footer/Footer';
 
 const BasicTemplate = ({ children, isAuth, handleSignOutClick }) => {
   return (
-    <div className=" max-w-screen-lg mx-auto">
-      <section className="mt-5 mb-5 border-b-2 border-stone-300/50 font-mono ">
+    <>
+      <div className="container mx-auto px-4 font-mono">
         <Header isAuth={isAuth} handleSignOutClick={handleSignOutClick} />
-      </section>
+      </div>
 
-      <main>{children}</main>
+      <div className="container mx-auto px-4">
+        <main className="">{children}</main>
+      </div>
 
-      <section className="font-serif">
+      <div className="container mx-auto px-4">
         <Footer />
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 

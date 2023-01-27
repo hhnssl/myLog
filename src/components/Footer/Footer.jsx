@@ -3,8 +3,8 @@ import { CgCopyright } from 'react-icons/cg';
 
 const Footer = () => {
   return (
-    <footer className="my-10 flex flex-col items-center ">
-      <p className="mb-4">
+    <footer className="flex flex-col items-center font-serif py-20">
+      <p className="mb-3">
         <a
           className="flex items-center"
           href="https://github.com/hhnssl"
