@@ -11,7 +11,7 @@ const BasicTemplate = ({ children, isAuth, handleSignOutClick }) => {
       </div>
 
       <div className="container mx-auto px-4">
-        <main className="">{children}</main>
+        <main>{children}</main>
       </div>
 
       <div className="container mx-auto px-4">
