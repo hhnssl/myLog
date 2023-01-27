@@ -34,7 +34,9 @@ const PostList = ({ isAuth }) => {
       <h2 className="sr-only">포스트 목록</h2>
       <ul className="flex flex-wrap">
         {postList.length === 0 ? (
-          <li>포스트가 없습니다.</li>
+          <li className="p-64  font-bold text-2xl mx-auto">
+            포스트가 없습니다.
+          </li>
         ) : (
           postList.map((post) => (
             <li className="w-1/4 p-3 " key={post.id}>
