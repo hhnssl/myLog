@@ -1,7 +1,7 @@
 // 글을 작성하고 파이어베이스에 글을 전송하는 페이지
 import { auth, firestoreDB } from '../../firebase_setup/firebase';
-import { collection } from 'firebase/firestore';
-import { useState, useRef } from 'react';
+import { collection, setLogLevel } from 'firebase/firestore';
+import { useState, useRef, useEffect } from 'react';
 import BasicTemplate from '../../template/BasicTemplate';
 import handleSubmit from '../../handles/handleSubmit';
 // import handleImageUpload from '../../handles/handleFileUpload';
@@ -9,15 +9,20 @@ import { useNavigate } from 'react-router-dom';
 import { HiPhotograph } from 'react-icons/hi';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase_setup/firebase';
+import { v4 } from 'uuid';
+import { async } from '@firebase/util';
 
 const WritePage = ({ isAuth, handleSignOutClick }) => {
   const navigate = useNavigate();
+  const [fileAttachedState, setFileAttachedState] = useState('사진 첨부하기');
 
   // const postInputRef = useRef([]);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState({});
+  // const [fileUrl, setFileUrl] = useState('');
   const [postInputState, setPostInputState] = useState({
     postTitle: '',
     postContent: '',
+    // postFileUrl: ''
   });
 
   const { postTitle, postContent } = postInputState;
@@ -36,30 +41,41 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
+
+    setFileAttachedState(e.target.files[0].name);
   };
 
   const uploadToFirebase = () => {
     //
     const storageRef = ref(storage, `/files/${file.name}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
+
     uploadTask.on(
       'state_changed',
-      (err) => console.log(err),
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      },
+      (error) => {
+        console.error(error);
+      },
       () => {
-        // download url
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url);
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+
+          // url을 얻어야 이동
+          handleSubmit(postInputState, downloadURL, navigate);
         });
       }
     );
-    //
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     uploadToFirebase();
 
-    handleSubmit(postInputState, file, navigate);
+    // handleSubmit(postInputState, fileUrl, navigate);
 
     // postInputRef.current.forEach((e) => (e.value = ''));
   };
@@ -88,7 +104,7 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
                 htmlFor="postImage"
               >
                 <HiPhotograph />
-                <span className="text-sm ml-2">사진 첨부하기</span>
+                <span className="text-sm ml-2">{fileAttachedState}</span>
               </label>
               <input
                 id="postImage"
@@ -101,7 +117,6 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
                 onChange={handleChangeFile}
               />
             </div>
-            {/* <div>{file && `${file.name} - ${file.type}`}</div> */}
 
             <div className="rounded-b-lg bg-white px-4 py-2 dark:bg-gray-800">
               <label className="sr-only" htmlFor="postContent">

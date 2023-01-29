@@ -44,7 +44,7 @@ const PostList = ({ isAuth }) => {
                 <div className="h-[400px] w-full rounded-lg shadow-md lg:max-w-sm bg-white overflow-hidden relative ">
                   <img
                     className="mb-4 object-cover w-full h-48"
-                    src="https://firebasestorage.googleapis.com/v0/b/mylog-437d4.appspot.com/o/files%2F%EC%A6%9D%EB%AA%85-removebg-preview.png?alt=media&token=f39f25f7-9fda-4706-9e50-6059b3947c9b"
+                    src={post.image}
                     alt=""
                   />
                   <div className=" p-4 flex flex-col justify-between">
@@ -54,7 +54,7 @@ const PostList = ({ isAuth }) => {
                     <p className="break-words line-clamp-3 mb-2 leading-normal text-zinc-500 text-sm">
                       {post.postContent}
                     </p>
-                    {/* <div className=" flex absolute bottom-0 left-0"> */}
+
                     <span className="text-xs absolute bottom-0 left-0 m-4 pb-3">
                       by {post.author.name}.
                     </span>

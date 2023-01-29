@@ -2,8 +2,8 @@ import { collection, addDoc } from 'firebase/firestore';
 import { auth, firestoreDB } from '../firebase_setup/firebase';
 
 // collection과 document 만들기
-const handleSubmit = async (post, image, navigate) => {
-  console.log('auth.currentUser.displayName', auth.currentUser.id);
+const handleSubmit = async (post, imageUrl, navigate) => {
+  console.log('imageUrl', imageUrl);
 
   if ((post.postTitle === '') | (post.postContent === '')) {
     alert('내용을 입력하세요!');
@@ -13,7 +13,7 @@ const handleSubmit = async (post, image, navigate) => {
   try {
     const docRef = await addDoc(collection(firestoreDB, 'posts'), {
       postTitle: post.postTitle,
-      image: image.name,
+      image: imageUrl,
       postContent: post.postContent,
       author: {
         name: auth.currentUser.displayName,
