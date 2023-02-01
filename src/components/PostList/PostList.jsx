@@ -39,19 +39,19 @@ const PostList = ({ isAuth }) => {
           </li>
         ) : (
           postList.map((post) => (
-            <li className="w-1/4 p-3 " key={post.id}>
+            <li className="p-3 md:w-1/2 lg:w-1/3 xl:w-1/4" key={post.id}>
               <Link to="/view" state={{ post }}>
-                <div className="h-[400px] w-full rounded-lg shadow-md lg:max-w-sm bg-white overflow-hidden relative ">
+                <div className="max-sm:flex max-sm:h-[200px]  h-[400px] overflow-hidden rounded-lg shadow-md bg-white relative ">
                   <img
-                    className="mb-4 object-cover w-full h-48"
+                    className="max-sm:h-full max-sm:w-1/3 mb-4 object-cover w-full h-48"
                     src={post.image}
                     alt=""
                   />
-                  <div className=" p-4 flex flex-col justify-between">
-                    <strong className="mb-2 truncate block text-xl font-semibold ">
+                  <div className="max-sm:relative max-sm:w-2/3  sm:justify-between p-4 flex flex-col ">
+                    <strong className="max-sm:text-base max-sm:mb-3 mb-2 truncate block text-xl font-semibold ">
                       {post.postTitle}
                     </strong>
-                    <p className="break-words line-clamp-3 mb-2 leading-normal text-zinc-500 text-sm">
+                    <p className="max-sm:line-clamp-4 break-words line-clamp-3 mb-2 leading-normal text-zinc-500 text-sm">
                       {post.postContent}
                     </p>
 
@@ -60,7 +60,7 @@ const PostList = ({ isAuth }) => {
                     </span>
                     {isAuth && post.author.id === auth.currentUser.uid && (
                       <button
-                        className="px-4 py-2 text-sm text-blue-100 bg-blue-500 rounded shadow  absolute bottom-0 right-0 m-4"
+                        className="px-4 py-2 text-sm text-blue-100 bg-blue-500 rounded shadow absolute bottom-0 right-0 m-4"
                         onClick={() => handleDeletePostClick(post.id)}
                       >
                         삭제

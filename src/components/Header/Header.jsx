@@ -6,7 +6,7 @@ import { HiPencilSquare } from 'react-icons/hi2';
 
 const Header = ({ isAuth, handleSignOutClick }) => {
   return (
-    <header className="text-2xl py-4 mb-6">
+    <header className="text-2xl py-4 mb-6 ">
       <nav className="flex items-center justify-between py-2">
         <h1>
           <Link to="/" className="font-extrabold">

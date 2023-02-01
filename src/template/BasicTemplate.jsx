@@ -6,11 +6,11 @@ import Footer from '../components/Footer/Footer';
 const BasicTemplate = ({ children, isAuth, handleSignOutClick }) => {
   return (
     <>
-      <div className="container mx-auto px-4 font-mono">
+      <div className="container mx-auto px-4 font-mono ">
         <Header isAuth={isAuth} handleSignOutClick={handleSignOutClick} />
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <main>{children}</main>
       </div>
 
