@@ -82,13 +82,13 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
 
   return (
     <BasicTemplate isAuth={isAuth} handleSignOutClick={handleSignOutClick}>
-      <section>
+      <section className="mx-3">
         <form className="flex flex-col items-center" onSubmit={submitHandler}>
           <label className="sr-only" htmlFor="postTitle">
             글 제목
           </label>
           <input
-            className="p-3 mb-4 w-full rounded-lg border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-700"
+            className="p-3 mb-4 w-full rounded-lg border border-gray-200 bg-white"
             id="postTitle"
             name="postTitle"
             // ref={(elem) => (postInputRef.current[0] = elem)}
@@ -97,10 +97,10 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
             type="text"
             placeholder="제목을 입력하세요"
           />
-          <div className="mb-4 w-full rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
+          <div className="mb-4 w-full rounded-lg border border-gray-200 bg-gray-50 ">
             <div className="flex items-center justify-between border-b px-3 py-2 dark:border-gray-600">
               <label
-                className="flex items-center text-3xl text-slate-600"
+                className="flex items-center text-3xl text-slate-600 hover:bg-sky-100 hover:bg-sky-200 hover:ring-1 hover:rounded-lg cursor-pointer"
                 htmlFor="postImage"
               >
                 <HiPhotograph />
@@ -118,12 +118,12 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
               />
             </div>
 
-            <div className="rounded-b-lg bg-white px-4 py-2 dark:bg-gray-800">
+            <div className="rounded-b-lg bg-white px-4 py-2 ">
               <label className="sr-only" htmlFor="postContent">
                 게시글 작성하기
               </label>
               <textarea
-                className="block w-full border-0 bg-white px-0 text-sm text-gray-800 focus:ring-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+                className="block w-full border-0 bg-white px-0 text-sm text-gray-800 focus:ring-0 "
                 rows="20"
                 name="postContent"
                 id="postContent"
@@ -136,7 +136,7 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
           </div>
 
           <button
-            className="mt-5 px-5 py-2.5 text-sm font-medium  text-white bg-sky-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+            className="mt-5 px-5 py-2.5 text-sm font-medium  text-white bg-sky-700 rounded-lg focus:ring-4 focus:ring-blue-200 "
             type="submit"
           >
             저장하기
