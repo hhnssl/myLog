@@ -22,15 +22,15 @@ const LoginPage = ({ isAuth, setIsAuth }) => {
 
   return (
     <BasicTemplate isAuth={isAuth}>
-      <div className="mt-20 relative text-gray-500 md:px-5 xl:px-20">
+      <div className="px-3 mx-auto mt-20 text-gray-500 md:max-w-2xl">
         <div className="rounded-xl bg-white shadow-xl">
-          <div className="p-6 sm:p-16">
-            <h1 className="mb-8 text-center text-2xl font-bold text-cyan-900 underline underline-offset-8">
+          <div className="p-6">
+            <h1 className=" text-center text-2xl font-bold text-cyan-900 underline underline-offset-8">
               Login
             </h1>
 
-            <div className="relative m-auto px-6 text-gray-500 md:px-12 xl:px-40">
-              <div className="mt-16 grid space-y-4">
+            <div className=" px-6 text-gray-500 ">
+              <div className="mt-14 grid md:">
                 <button
                   className="bg-white group h-12 rounded-full border-2 border-gray-300 px-6 transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
                   onClick={signWithGoogle}
@@ -41,7 +41,7 @@ const LoginPage = ({ isAuth, setIsAuth }) => {
                       className="absolute left-0 w-5"
                       alt="google logo"
                     />
-                    <span className="block w-max text-sm font-semibold tracking-wide text-gray-700 transition duration-300 group-hover:text-blue-600 sm:text-base">
+                    <span className="block text-sm font-semibold tracking-wide text-gray-700 transition duration-300 group-hover:text-blue-600">
                       Continue with Google
                     </span>
                   </div>
