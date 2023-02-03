@@ -138,4 +138,18 @@
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
 ```
 
+ **3. 로그아웃 시 404 페이지로 이동하는 문제**
+ * 원인: 보통 클라이언트 사이드 렌더링을 하는 SPA에서 발생하는 문제로, 서버에 존재하지 않는 url을 입력함으로써 생기는 문제
+ * 참고: [참고글1](https://stackoverflow.com/questions/34415725/when-i-refresh-my-website-i-get-a-404-this-is-with-angular2-and-firebase), [참고글2](https://bejda.medium.com/fixing-the-angular-404-on-refresh-issue-in-firebase-f462124afe40), [참고글3](https://viblo.asia/p/spa-get-404-error-when-refreshing-the-page-or-access-directly-and-seo-3RlL5YkzLbB)
+
+ * 해결: 호스팅 서비스인 파이어베이스의 rewrites 기능을 이용하여 해결함. 
+```js
+//firebase.json 에 다음과 같은 규칙을 추가
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+```
  
