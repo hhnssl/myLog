@@ -21,7 +21,9 @@ function App() {
         setIsAuth(false);
         window.location.pathname = '/login';
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
