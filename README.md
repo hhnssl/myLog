@@ -116,7 +116,7 @@
  
  **1. 로그인 하지 않고 수동으로 '/write' 페이지로 이동하여 글 작성이 가능한 오류 발생**
  <br>
- <img src="https://user-images.githubusercontent.com/97442475/216506676-d68d3782-88e2-47ce-b997-fe85d0b14780.png  width="500" height="100%">
+ <img src="https://user-images.githubusercontent.com/97442475/216506676-d68d3782-88e2-47ce-b997-fe85d0b14780.png"  width="500" height="100%">
    <br>
   * 해결: useEffect 훅 함수를 이용하여 첫 렌더링에 로그인 여부를 담고 있는 state인 isAuth가 false 일 때, login 페이지로 이동하도록 수정함
 ```js
