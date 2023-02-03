@@ -81,9 +81,9 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
   };
 
   useEffect(() => {
-    // 로그인 하지 않고 /write 페이지로 이동했을 경우 로그인 페이지로 이동
     if (!isAuth) navigate('/login');
   }, []);
+
   return (
     <BasicTemplate isAuth={isAuth} handleSignOutClick={handleSignOutClick}>
       <section className="mx-3">
