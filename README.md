@@ -125,5 +125,17 @@
   }, []);
 ```
 
+ **2. 새로고침 하면 로그인이 해제되는 문제**
+ * 원인: useState(false)로 초기 렌더링 값을 false로 고정시켜 놓았기 때문에 새로고침을 할때마다 isAuth 값에 false 값이 들어가서 로그아웃 상태가 됨
+```js
+// 수정 전 코드
+  const [isAuth, setIsAuth] = useState(false);
+```
+
+ * 해결: 로그인을 했을 때 저장했던 localStorage의 isAuth 값(true 상태)을 반영하도록 수정함. 새로고침을 해도 localStorage에 값이 남아있기 때문에 로그인이 풀리지 않음.
+```js
+// 수정 후 코드
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
+```
 
  
