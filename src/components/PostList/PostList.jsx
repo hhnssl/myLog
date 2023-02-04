@@ -33,7 +33,11 @@ const PostList = ({ isAuth }) => {
     <>
       <h2 className="sr-only">포스트 목록</h2>
       <ul className="flex flex-wrap">
-        {postList.length === 0 ? (
+        {!loading ? (
+          <li className="p-20 font-bold text-xl mx-auto md:p-32">
+            포스트를 가져오고 있습니다.
+          </li>
+        ) : postList.length === 0 ? (
           <li className="p-20 font-bold text-xl mx-auto md:p-32">
             포스트가 없습니다.
           </li>
