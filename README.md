@@ -12,6 +12,12 @@
 
 ## 3. UI 및 기능
 **1. 메인 페이지**
+
+|<img src="https://user-images.githubusercontent.com/97442475/216751020-0d4cf34e-1b42-4bac-ba6f-4a020e5aa23d.gif" width="900">|
+|---|
+|포스트가 로딩되는 동안 메세지가 나타납니다.|
+
+<br>
 <table>
     <tbody>
         <tr>
