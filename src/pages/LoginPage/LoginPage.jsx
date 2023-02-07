@@ -1,9 +1,7 @@
-import BasicTemplate from '../../template/BasicTemplate';
+import { useNavigate } from 'react-router-dom';
 import { auth, provider } from '../../firebase_setup/firebase';
 import { signInWithPopup } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import BasicTemplate from '../../template/BasicTemplate';
 
 const LoginPage = ({ isAuth, setIsAuth }) => {
   const navigate = useNavigate();

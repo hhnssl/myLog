@@ -1,28 +1,18 @@
-// 글을 작성하고 파이어베이스에 글을 전송하는 페이지
-import { auth, firestoreDB } from '../../firebase_setup/firebase';
-import { collection, setLogLevel } from 'firebase/firestore';
-import { useState, useRef, useEffect } from 'react';
-import BasicTemplate from '../../template/BasicTemplate';
-import handleSubmit from '../../handles/handleSubmit';
-// import handleImageUpload from '../../handles/handleFileUpload';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HiPhotograph } from 'react-icons/hi';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase_setup/firebase';
-import { v4 } from 'uuid';
-import { async } from '@firebase/util';
+import { HiPhotograph } from 'react-icons/hi';
+import BasicTemplate from '../../template/BasicTemplate';
+import handleSubmit from '../../handles/handleSubmit';
 
 const WritePage = ({ isAuth, handleSignOutClick }) => {
   const navigate = useNavigate();
   const [fileAttachedState, setFileAttachedState] = useState('사진 첨부하기');
-
-  // const postInputRef = useRef([]);
   const [file, setFile] = useState({});
-  // const [fileUrl, setFileUrl] = useState('');
   const [postInputState, setPostInputState] = useState({
     postTitle: '',
     postContent: '',
-    // postFileUrl: ''
   });
 
   const { postTitle, postContent } = postInputState;
@@ -46,8 +36,7 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
   };
 
   const uploadToFirebase = () => {
-    //
-    const storageRef = ref(storage, `/files/${file.name}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
+    const storageRef = ref(storage, `/files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -74,10 +63,6 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     uploadToFirebase();
-
-    // handleSubmit(postInputState, fileUrl, navigate);
-
-    // postInputRef.current.forEach((e) => (e.value = ''));
   };
 
   useEffect(() => {
@@ -95,7 +80,6 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
             className="p-3 mb-4 w-full rounded-lg border border-gray-200 bg-white"
             id="postTitle"
             name="postTitle"
-            // ref={(elem) => (postInputRef.current[0] = elem)}
             value={postTitle}
             onChange={onChange}
             type="text"
@@ -116,8 +100,6 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
                 className="hidden"
                 type="file"
                 accept="/image/*"
-                // ref={(elem) => (postInputRef.current[1] = elem)}
-                // value={postImage}
                 onChange={handleChangeFile}
               />
             </div>
@@ -132,7 +114,6 @@ const WritePage = ({ isAuth, handleSignOutClick }) => {
                 name="postContent"
                 id="postContent"
                 placeholder="당신의 이야기를 적어보세요..."
-                // ref={(elem) => (postInputRef.current[2] = elem)}
                 value={postContent}
                 onChange={onChange}
               ></textarea>

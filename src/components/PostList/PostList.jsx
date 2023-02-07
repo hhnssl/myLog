@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { auth, firestoreDB } from '../../firebase_setup/firebase';
-import { Link } from 'react-router-dom';
+
 const PostList = ({ isAuth }) => {
   const [postList, setPostList] = useState([]);
   const [loading, setLoading] = useState(false);

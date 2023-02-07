@@ -1,5 +1,5 @@
-import BasicTemplate from '../../template/BasicTemplate';
 import { useLocation } from 'react-router-dom';
+import BasicTemplate from '../../template/BasicTemplate';
 import Post from '../../components/Post/Post';
 
 const ViewPage = ({ isAuth, handleSignOutClick }) => {
